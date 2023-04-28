@@ -76,6 +76,7 @@ jobs:
       - name: Deploy
         run: echo "Deploying..."
   report:
+    needs: [lint, deploy] # need to be dependend on the failing jobs, otherwise run in parallel.
     if: failure()  # we'll run on any failure
     runs-on: ubuntu-latest
     steps:
