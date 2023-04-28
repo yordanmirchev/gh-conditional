@@ -36,7 +36,7 @@ jobs:
         id: run-tests  # need the id to evaluate below
         run: npm run test
       - name: Upload test report
-        if:  steps.run-tests.outcine == 'failure'   # we can also use expression like : $ {{  }}
+        if: failure() &&  steps.run-tests.outcine == 'failure'   # we can also use expression like : $ {{  }}
         uses: actions/upload-artifact@v3
         with:
           name: test-report
