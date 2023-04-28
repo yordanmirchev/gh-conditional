@@ -7,6 +7,12 @@ jobs:
       matrix:
         node-version: [12, 14, 16, 18, 20]
         operating-system: [ubuntu-latest, windows-latest]
+        include:
+          - operating-system: ubuntu-latest
+          - node-version: 14
+        exclude:
+          - operating-system: windows-latest
+          - node-version: 20
     runs-on: $ {{ matrix.operating-system }} # run in parallel for all os
     steps:
       - name: Get code
