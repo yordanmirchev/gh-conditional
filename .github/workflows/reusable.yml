@@ -7,6 +7,9 @@ on:
         required: false # whether is required or not, if not we can use default
         default: dist # if a value is not provided we'll use this
         type: string # type of the value
+    # secrets:
+      # some-secret:
+      #   required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest

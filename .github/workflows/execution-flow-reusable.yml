@@ -71,6 +71,8 @@ jobs:
     uses:  ./.github/workflows/reusable.yml  # provide path to the reusable wf relative to the root 
     with: 
        artifact-name: dist-files # here we specify the value that we pass as an imput to the reusable wf.
+    # secrets:
+      # some-secret: $ {{ secrets.some-secret }}  # we provide the secret to the reusable wf with secret
   report:
     needs: [lint, deploy] # need to be dependend on the failing jobs, otherwise run in parallel.
     if: failure()  # we'll run on any failure
