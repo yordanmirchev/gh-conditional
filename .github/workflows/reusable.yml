@@ -10,8 +10,14 @@ on:
     # secrets:
       # some-secret:
       #   required: true
+    outputs: 
+      result: 
+        description: The result of the deploy operaiton.
+        value: ${{ jobs.deploy.outputs.outcome }} # jobs is used for resuable wf only
 jobs:
   deploy:
+    outputs:  # we add as an output of the job, so we can send it back later.
+      outcome: ${{ steps.set-result.outputs.step-result }} # we can name it output as well , still to make a diffrence we use outcome.
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -22,3 +28,6 @@ jobs:
         run: ls 
       - name: Output information
         run: echo "Deploying & uploading ..."
+      - name: Set result output
+        id: set-result
+        run: echo "::set-output name=step-result::success" # this is the old syntax , we can use $GITHUB_OUTPUT instead

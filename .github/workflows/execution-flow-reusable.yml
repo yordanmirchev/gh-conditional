@@ -73,6 +73,12 @@ jobs:
        artifact-name: dist-files # here we specify the value that we pass as an imput to the reusable wf.
     # secrets:
       # some-secret: $ {{ secrets.some-secret }}  # we provide the secret to the reusable wf with secret
+  preint-deploy-result:  # to print the output of the reusable wf 
+    needs: deploy  # need to run it after deploy 
+    runs-on: ubuntu-latest
+      steps:
+        -name: Print deploy putput
+         run: echo "${{ needs.deploy.outputs.result }}" # get the output of the result of the reusable wf.
   report:
     needs: [lint, deploy] # need to be dependend on the failing jobs, otherwise run in parallel.
     if: failure()  # we'll run on any failure
