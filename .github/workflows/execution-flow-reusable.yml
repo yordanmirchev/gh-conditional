@@ -77,8 +77,8 @@ jobs:
     needs: deploy  # need to run it after deploy 
     runs-on: ubuntu-latest
     steps:
-      -name: Print deploy putput
-       run: echo "${{ needs.deploy.outputs.result }}" # get the output of the result of the reusable wf.
+      - name: Print deploy putput
+        run: echo "${{ needs.deploy.outputs.result }}" # get the output of the result of the reusable wf.
   report:
     needs: [lint, deploy] # need to be dependend on the failing jobs, otherwise run in parallel.
     if: failure()  # we'll run on any failure
