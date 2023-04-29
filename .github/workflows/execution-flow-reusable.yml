@@ -73,7 +73,7 @@ jobs:
        artifact-name: dist-files # here we specify the value that we pass as an imput to the reusable wf.
     # secrets:
       # some-secret: $ {{ secrets.some-secret }}  # we provide the secret to the reusable wf with secret
-  preint-deploy-result:  # to print the output of the reusable wf 
+  print-deploy-result:  # to print the output of the reusable wf 
     needs: deploy  # need to run it after deploy 
     runs-on: ubuntu-latest
       steps:
