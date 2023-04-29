@@ -76,7 +76,7 @@ jobs:
   print-deploy-result:  # to print the output of the reusable wf 
     needs: deploy  # need to run it after deploy 
     runs-on: ubuntu-latest
-      steps:
+    steps:
         -name: Print deploy putput
          run: echo "${{ needs.deploy.outputs.result }}" # get the output of the result of the reusable wf.
   report:
